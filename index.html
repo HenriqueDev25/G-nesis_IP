@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar Endereço IP</title>
+    <meta name="GenesisIP" content="width=device-width, initial-scale=1.0">
+    <title>Gênesis Endereço IP</title>
     <style>
         * {
             margin: 0;
@@ -74,12 +74,25 @@
         .success {
             color: #4CAF50;
         }
+        >
+    /* ...código existente... */
+    .logo-container {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+    }
+    .logo {
+        width: 150px; /* Ajuste o tamanho conforme necessário */
+    }
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
     <div class="search-container">
         <h1>Buscar Endereço IP</h1>
-        <input type="text" class="search-box" id="ipInput" placeholder="Digite um IP...">
+        <input type="text" class="search-box" id="ipInput" placeholder="Digite um IP">
         <button onclick="buscarEndereco()">Buscar</button>
         <div class="result" id="resultado"></div>
     </div>
