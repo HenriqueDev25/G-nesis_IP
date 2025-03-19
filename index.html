@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="GenesisIP" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Gênesis Endereço IP</title>
     <style>
         * {
@@ -10,265 +10,351 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            flex-direction: column;
+            color: #333;
         }
+
         .container {
             max-width: 400px;
-            margin: 100px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
         }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: left;
         }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
         .form-group input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
+
+        .form-group input:focus {
+            border-color: #1e3a8a;
+            box-shadow: 0 0 8px rgba(30, 58, 138, 0.3);
+        }
+
         .form-group button {
             width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
+            padding: 12px;
+            background-color: #1e3a8a;
             color: white;
             font-size: 16px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
         }
+
         .form-group button:hover {
-            background-color: #45a049;
+            background-color: #1c3a7a;
+            transform: translateY(-2px);
         }
+
+        .form-group button:active {
+            transform: translateY(0);
+        }
+
         .hidden {
             display: none;
         }
 
-        /* Estilos para o conteúdo de IP */
+        .infobox {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            display: none; /* Inicialmente oculta */
+        }
+
+        .infobox.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .infobox.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
         .search-container {
-            background-color: #ffffff;
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 400px;
             width: 100%;
+            backdrop-filter: blur(10px);
         }
+
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: #333;
+            color: #444;
         }
+
         .search-box {
             width: 100%;
             padding: 12px;
             font-size: 16px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
             margin-bottom: 20px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
+
         .search-box:focus {
-            border-color: #4CAF50;
+            border-color: #1e3a8a;
+            box-shadow: 0 0 8px rgba(30, 58, 138, 0.3);
         }
-        button {
-            padding: 12px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
+
         .result {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 16px;
             color: #333;
-            padding: 10px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
+            padding: 15px;
+            background-color: rgba(241, 241, 241, 0.8);
+            border-radius: 8px;
         }
+
         .error {
             color: #ff4c4c;
         }
+
         .success {
             color: #4CAF50;
         }
-        
-        /* Centralizar a logo */
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 45px;
-            width: 45%;
-        }
-        .logo {
-            width: 65px; /* Ajuste o tamanho conforme necessário */
+
+        @media (max-width: 480px) {
+            .container, .search-container {
+                padding: 20px;
+            }
+
+            h1, h2 {
+                font-size: 20px;
+            }
+
+            .logo {
+                width: 100px;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- Tela de Login -->
-<div id="loginScreen">
-    <div class="container">
-        <h2 id="loginTitle">Login</h2>
+    <!-- Tela de Login -->
+    <div id="loginScreen">
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="logo">
+            </div>
+            <h2 id="loginTitle">Login</h2>
 
-        <div id="loginForm">
-            <div class="form-group">
-                <label for="username">Usuário:</label>
-                <input type="text" id="username" placeholder="Digite seu usuário">
+            <!-- Infobox para mensagens -->
+            <div id="infobox" class="infobox hidden"></div>
+
+            <div id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" placeholder="Digite seu usuário">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" placeholder="Digite sua senha">
+                </div>
+                <div class="form-group">
+                    <button onclick="login()">Entrar</button>
+                </div>
+                <div class="form-group">
+                    <button onclick="showRegisterForm()">Cadastrar-se</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" placeholder="Digite sua senha">
-            </div>
-            <div class="form-group">
-                <button onclick="login()">Entrar</button>
-            </div>
-            <div class="form-group">
-                <button onclick="showRegisterForm()">Cadastrar-se</button>
+
+            <div id="registerForm" class="hidden">
+                <div class="form-group">
+                    <label for="newUsername">Novo Usuário:</label>
+                    <input type="text" id="newUsername" placeholder="Escolha um nome de usuário">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nova Senha:</label>
+                    <input type="password" id="newPassword" placeholder="Escolha uma senha">
+                </div>
+                <div class="form-group">
+                    <button onclick="register()">Cadastrar</button>
+                </div>
+                <div class="form-group">
+                    <button onclick="showLoginForm()">Voltar ao Login</button>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div id="registerForm" class="hidden">
-            <div class="form-group">
-                <label for="newUsername">Novo Usuário:</label>
-                <input type="text" id="newUsername" placeholder="Escolha um nome de usuário">
+    <!-- Tela de Busca de IP -->
+    <div id="ipScreen" class="hidden">
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="logo">
             </div>
-            <div class="form-group">
-                <label for="newPassword">Nova Senha:</label>
-                <input type="password" id="newPassword" placeholder="Escolha uma senha">
-            </div>
-            <div class="form-group">
-                <button onclick="register()">Cadastrar</button>
-            </div>
-            <div class="form-group">
-                <button onclick="showLoginForm()">Voltar ao Login</button>
+            <div class="search-container">
+                <h1>Buscar Endereço IP</h1>
+                <input type="text" class="search-box" id="ipInput" placeholder="Digite um IP">
+                <button onclick="buscarEndereco()">Buscar</button>
+                <div class="result" id="resultado"></div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Tela de Busca de IP -->
-<div id="ipScreen" class="hidden">
-    <div class="logo-container">
-        <img src="logo.png" alt="Logo" class="logo">
-    </div>
-    <div class="search-container">
-        <h1>Buscar Endereço IP</h1>
-        <input type="text" class="search-box" id="ipInput" placeholder="Digite um IP">
-        <button onclick="buscarEndereco()">Buscar</button>
-        <div class="result" id="resultado"></div>
-    </div>
-</div>
+    <script>
+        // Função para exibir a infobox
+        function showInfobox(message, type) {
+            const infobox = document.getElementById('infobox');
+            infobox.innerText = message;
+            infobox.className = `infobox ${type}`; // Adiciona a classe de tipo (success/error)
+            infobox.style.display = 'block'; // Exibe a infobox
 
-<script>
-    // Função para carregar usuários do localStorage
-    function loadUsers() {
-        const users = localStorage.getItem('users');
-        return users ? JSON.parse(users) : [];
-    }
-
-    // Função para salvar usuários no localStorage
-    function saveUsers(users) {
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
-    // Mostrar o formulário de registro
-    function showRegisterForm() {
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('registerForm').classList.remove('hidden');
-        document.getElementById('loginTitle').innerText = "Cadastro";
-    }
-
-    // Mostrar o formulário de login
-    function showLoginForm() {
-        document.getElementById('registerForm').classList.add('hidden');
-        document.getElementById('loginForm').classList.remove('hidden');
-        document.getElementById('loginTitle').innerText = "Login";
-    }
-
-    // Função para login
-    function login() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        const users = loadUsers();
-        const user = users.find(u => u.username === username && u.password === password);
-
-        if (user) {
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('ipScreen').classList.remove('hidden');
-        } else {
-            alert("Usuário ou senha incorretos.");
+            // Oculta a infobox após 3 segundos
+            setTimeout(() => {
+                infobox.style.display = 'none';
+            }, 3000);
         }
-    }
 
-    // Função para cadastrar um novo usuário
-    function register() {
-        const username = document.getElementById('newUsername').value;
-        const password = document.getElementById('newPassword').value;
+        // Função para carregar usuários do localStorage
+        function loadUsers() {
+            const users = localStorage.getItem('users');
+            return users ? JSON.parse(users) : [];
+        }
 
-        if (username && password) {
+        // Função para salvar usuários no localStorage
+        function saveUsers(users) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // Mostrar o formulário de registro
+        function showRegisterForm() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+            document.getElementById('loginTitle').innerText = "Cadastro";
+        }
+
+        // Mostrar o formulário de login
+        function showLoginForm() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('loginTitle').innerText = "Login";
+        }
+
+        // Função para login
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
             const users = loadUsers();
+            const user = users.find(u => u.username === username && u.password === password);
 
-            // Verificar se o usuário já existe
-            const existingUser = users.find(u => u.username === username);
-            if (existingUser) {
-                alert("Este usuário já está cadastrado.");
+            if (user) {
+                showInfobox("Login efetuado com sucesso!", "success");
+                setTimeout(() => {
+                    document.getElementById('loginScreen').classList.add('hidden');
+                    document.getElementById('ipScreen').classList.remove('hidden');
+                }, 1000);
             } else {
-                users.push({ username, password });
-                saveUsers(users);
-                alert("Usuário cadastrado com sucesso! Você pode agora fazer login.");
-                showLoginForm();
+                showInfobox("Usuário ou senha incorretos.", "error");
             }
-        } else {
-            alert("Por favor, preencha todos os campos.");
         }
-    }
 
-    // Função de busca de endereço IP
-    function buscarEndereco() {
-        const ip = document.getElementById("ipInput").value;
-        fetch(`https://ipwhois.app/json/${ip}`)
-            .then(response => response.json())
-            .then(data => {
-                const resultadoDiv = document.getElementById("resultado");
-                if (data.success === false) {
-                    resultadoDiv.innerText = "IP inválido ou não encontrado.";
-                    resultadoDiv.classList.add("error");
-                    resultadoDiv.classList.remove("success");
+        // Função para cadastrar um novo usuário
+        function register() {
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+
+            if (username && password) {
+                const users = loadUsers();
+
+                // Verificar se o usuário já existe
+                const existingUser = users.find(u => u.username === username);
+                if (existingUser) {
+                    showInfobox("Este usuário já está cadastrado.", "error");
                 } else {
-                    resultadoDiv.innerText = 
-                        `País: ${data.country}, Cidade: ${data.city}, Região: ${data.region}`;
-                    resultadoDiv.classList.add("success");
-                    resultadoDiv.classList.remove("error");
+                    users.push({ username, password });
+                    saveUsers(users);
+                    showInfobox("Usuário cadastrado com sucesso! Você pode agora fazer login.", "success");
+                    showLoginForm();
                 }
-            })
-            .catch(error => {
-                document.getElementById("resultado").innerText = "Erro ao buscar informações.";
-                document.getElementById("resultado").classList.add("error");
-                document.getElementById("resultado").classList.remove("success");
-            });
-    }
-</script>
+            } else {
+                showInfobox("Por favor, preencha todos os campos.", "error");
+            }
+        }
+
+        // Função de busca de endereço IP
+        function buscarEndereco() {
+            const ip = document.getElementById("ipInput").value;
+            fetch(`https://ipwhois.app/json/${ip}`)
+                .then(response => response.json())
+                .then(data => {
+                    const resultadoDiv = document.getElementById("resultado");
+                    if (data.success === false) {
+                        resultadoDiv.innerText = "IP inválido ou não encontrado.";
+                        resultadoDiv.classList.add("error");
+                        resultadoDiv.classList.remove("success");
+                    } else {
+                        resultadoDiv.innerText = 
+                            `País: ${data.country}, Cidade: ${data.city}, Região: ${data.region}`;
+                        resultadoDiv.classList.add("success");
+                        resultadoDiv.classList.remove("error");
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("resultado").innerText = "Erro ao buscar informações.";
+                    document.getElementById("resultado").classList.add("error");
+                    document.getElementById("resultado").classList.remove("success");
+                });
+        }
+    </script>
 </body>
 </html>
