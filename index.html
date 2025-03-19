@@ -171,6 +171,51 @@
             color: #207a23;
         }
 
+        .info-text {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .info-window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            text-align: center;
+        }
+
+        .info-window h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: #444;
+        }
+
+        .info-window p {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
         @media (max-width: 480px) {
             .container, .search-container {
                 padding: 20px;
@@ -214,6 +259,9 @@
                 <div class="form-group">
                     <button onclick="showRegisterForm()">Cadastrar-se</button>
                 </div>
+                <div class="info-text" onclick="showInfoWindow()">
+                    Clique aqui para mais informações sobre o Gênesis.
+                </div>
             </div>
 
             <div id="registerForm" class="hidden">
@@ -249,6 +297,18 @@
                 </div>
                 <div class="result" id="resultado"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Sobreposição para escurecer o fundo -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Janela de Informações -->
+    <div id="infoWindow" class="info-window">
+        <h3>Informações sobre o Gênesis</h3>
+        <p>O Projeto Gênesis tem como objetivo principal democratizar o acesso a ferramentas que, atualmente, são restritas ou de difícil alcance para a maioria da sociedade. Um exemplo disso é a localização por IP.</p>
+        <div class="form-group">
+            <button onclick="hideInfoWindow()">Fechar</button>
         </div>
     </div>
 
@@ -355,6 +415,25 @@
                     document.getElementById("resultado").classList.add("error");
                     document.getElementById("resultado").classList.remove("success");
                 });
+        }
+
+        // Função para exibir a janela de informações e a sobreposição
+        function showInfoWindow() {
+            const infoWindow = document.getElementById('infoWindow');
+            const overlay = document.getElementById('overlay');
+            infoWindow.style.display = 'block';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                hideInfoWindow();
+            }, 35000); // 35 segundos
+        }
+
+        // Função para esconder a janela de informações e a sobreposição
+        function hideInfoWindow() {
+            const infoWindow = document.getElementById('infoWindow');
+            const overlay = document.getElementById('overlay');
+            infoWindow.style.display = 'none';
+            overlay.style.display = 'none';
         }
     </script>
 </body>
