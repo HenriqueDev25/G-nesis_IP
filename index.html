@@ -106,7 +106,7 @@
             border-radius: 8px;
             font-size: 14px;
             text-align: center;
-            display: none; /* Inicialmente oculta */
+            display: none;
         }
 
         .infobox.success {
@@ -244,7 +244,9 @@
             <div class="search-container">
                 <h1>Buscar Endereço IP</h1>
                 <input type="text" class="search-box" id="ipInput" placeholder="Digite um IP">
-                <button onclick="buscarEndereco()">Buscar</button>
+                <div class="form-group">
+                    <button onclick="buscarEndereco()">Buscar</button>
+                </div>
                 <div class="result" id="resultado"></div>
             </div>
         </div>
@@ -255,10 +257,9 @@
         function showInfobox(message, type) {
             const infobox = document.getElementById('infobox');
             infobox.innerText = message;
-            infobox.className = `infobox ${type}`; // Adiciona a classe de tipo (success/error)
-            infobox.style.display = 'block'; // Exibe a infobox
+            infobox.className = `infobox ${type}`;
+            infobox.style.display = 'block';
 
-            // Oculta a infobox após 3 segundos
             setTimeout(() => {
                 infobox.style.display = 'none';
             }, 3000);
