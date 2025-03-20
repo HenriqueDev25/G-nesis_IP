@@ -404,8 +404,12 @@
                         resultadoDiv.classList.add("error");
                         resultadoDiv.classList.remove("success");
                     } else {
-                        resultadoDiv.innerText = 
-                            `País: ${data.country}, Cidade: ${data.city}, Região: ${data.region}`;
+                        resultadoDiv.innerHTML = 
+                            `País: ${data.country}<br>
+                             Cidade: ${data.city}<br>
+                             Região: ${data.region}<br>
+                             Latitude: ${data.latitude}<br>
+                             Longitude: ${data.longitude}`;
                         resultadoDiv.classList.add("success");
                         resultadoDiv.classList.remove("error");
                     }
