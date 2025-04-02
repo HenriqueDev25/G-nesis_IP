@@ -4,37 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Gênesis Endereço IP</title>
+    <!-- Importando fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
+        :root {
+            --primary: #1565c0;
+            --primary-dark: #0d47a1;
+            --primary-light: #5e92f3;
+            --dark: #263238;
+            --light: #f5f9ff;
+            --gray: #607d8b;
+            --card-bg: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        /* Reset moderno */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #00041a, #011050);
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient);
+            color: var(--dark);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: #333;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.6;
         }
 
         .container {
-            max-width: 400px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             width: 100%;
-            padding: 30px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            backdrop-filter: blur(10px);
+            max-width: 450px;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+            margin: 20px;
         }
 
         .logo-container {
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .logo {
@@ -42,58 +72,92 @@
             height: auto;
         }
 
-        h2 {
-            font-size: 24px;
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-dark);
+            text-align: center;
             margin-bottom: 20px;
-            color: #444;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
         }
 
         .form-group {
-            margin-bottom: 20px;
-            text-align: left;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--gray);
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px;
-            font-size: 14px;
-            border: 1px solid #ddd;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid rgba(21, 101, 192, 0.2);
             border-radius: 8px;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: var(--light);
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus {
-            border-color: #173177;
-            box-shadow: 0 0 8px rgba(30, 58, 138, 0.3);
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
         }
 
-        .form-group button {
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            padding: 12px;
-            background-color: #172e6d;
+            padding: 15px;
+            background: var(--gradient);
             color: white;
-            font-size: 16px;
             border: none;
             border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: all 0.3s ease;
+            margin-top: 10px;
         }
 
-        .form-group button:hover {
-            background-color: #1a3061;
+        .btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(21, 101, 192, 0.3);
         }
 
-        .form-group button:active {
-            transform: translateY(0);
+        .btn i {
+            margin-right: 10px;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(21, 101, 192, 0.05);
         }
 
         .hidden {
@@ -104,81 +168,79 @@
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 0.9rem;
             text-align: center;
             display: none;
         }
 
         .infobox.success {
-            background-color: #d4edda;
-            color: #155724;
+            background-color: #e6f7ee;
+            color: #207a23;
             border: 1px solid #c3e6cb;
         }
 
         .infobox.error {
-            background-color: #f8d7da;
-            color: #721c24;
+            background-color: #fde8e8;
+            color: #da1e1e;
             border: 1px solid #f5c6cb;
         }
 
-        .search-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .info-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
             text-align: center;
-            max-width: 400px;
-            width: 100%;
-            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #444;
+        .info-text:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* Tela de busca de IP */
+        .search-container {
+            margin-top: 30px;
         }
 
         .search-box {
             width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ddd;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid rgba(21, 101, 192, 0.2);
             border-radius: 8px;
             margin-bottom: 20px;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: var(--light);
+            transition: all 0.3s ease;
         }
 
         .search-box:focus {
-            border-color: #193070;
-            box-shadow: 0 0 8px rgba(30, 58, 138, 0.3);
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
         }
 
         .result {
             margin-top: 20px;
-            font-size: 16px;
-            color: #333;
             padding: 15px;
-            background-color: rgba(241, 241, 241, 0.8);
+            background-color: var(--light);
             border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        .error {
-            color: #da1e1e;
-        }
-
-        .success {
+        .result.success {
             color: #207a23;
+            border-left: 4px solid #207a23;
         }
 
-        .info-text {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
-            cursor: pointer;
-            text-decoration: underline;
+        .result.error {
+            color: #da1e1e;
+            border-left: 4px solid #da1e1e;
         }
 
+        /* Janela de informações */
         .overlay {
             position: fixed;
             top: 0;
@@ -195,49 +257,153 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+            max-width: 500px;
+            width: 90%;
             display: none;
-            text-align: center;
         }
 
         .info-window h3 {
-            margin-bottom: 15px;
-            font-size: 20px;
-            color: #444;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .info-window p {
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #555;
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Novos estilos para a busca de IP */
+        .ip-details {
+            margin-top: 20px;
+        }
+
+        .ip-detail-row {
+            display: flex;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ip-detail-label {
+            font-weight: 600;
+            min-width: 120px;
+            color: var(--primary-dark);
+        }
+
+        .ip-detail-value {
+            flex: 1;
+        }
+
+        .map-container {
+            margin-top: 20px;
+            height: 200px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--gray);
+        }
+
+        .history-container {
+            margin-top: 20px;
+        }
+
+        .history-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .history-item:hover {
+            background-color: #f5f9ff;
+        }
+
+        .history-ip {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .history-location {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .clear-history {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .clear-history-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .clear-history-btn:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .container, .search-container {
-                padding: 20px;
+            .container {
+                padding: 25px;
+                margin: 15px;
             }
-
-            h1, h2 {
-                font-size: 20px;
+            
+            h2 {
+                font-size: 1.3rem;
             }
-
-            .logo {
-                width: 100px;
+            
+            .form-group input, .search-box {
+                padding: 12px;
+            }
+            
+            .btn {
+                padding: 12px;
+            }
+            
+            .ip-detail-label {
+                min-width: 100px;
+                font-size: 0.9rem;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Tela de Login -->
     <div id="loginScreen">
         <div class="container">
             <div class="logo-container">
-                <img src="logo.png" alt="Logo" class="logo">
+                <img src="logo.png" alt="Logo Projeto Gênesis" class="logo">
             </div>
             <h2 id="loginTitle">Login</h2>
 
@@ -254,13 +420,17 @@
                     <input type="password" id="password" placeholder="Digite sua senha">
                 </div>
                 <div class="form-group">
-                    <button onclick="login()">Entrar</button>
+                    <button class="btn" onclick="login()">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </button>
                 </div>
                 <div class="form-group">
-                    <button onclick="showRegisterForm()">Cadastrar-se</button>
+                    <button class="btn btn-secondary" onclick="showRegisterForm()">
+                        <i class="fas fa-user-plus"></i> Cadastrar-se
+                    </button>
                 </div>
                 <div class="info-text" onclick="showInfoWindow()">
-                    Clique aqui para mais informações sobre o Gênesis.
+                    Clique aqui para mais informações sobre o Gênesis
                 </div>
             </div>
 
@@ -274,10 +444,14 @@
                     <input type="password" id="newPassword" placeholder="Escolha uma senha">
                 </div>
                 <div class="form-group">
-                    <button onclick="register()">Cadastrar</button>
+                    <button class="btn" onclick="register()">
+                        <i class="fas fa-user-check"></i> Cadastrar
+                    </button>
                 </div>
                 <div class="form-group">
-                    <button onclick="showLoginForm()">Voltar ao Login</button>
+                    <button class="btn btn-secondary" onclick="showLoginForm()">
+                        <i class="fas fa-arrow-left"></i> Voltar ao Login
+                    </button>
                 </div>
             </div>
         </div>
@@ -287,15 +461,78 @@
     <div id="ipScreen" class="hidden">
         <div class="container">
             <div class="logo-container">
-                <img src="logo.png" alt="Logo" class="logo">
+                <img src="logo.png" alt="Logo Projeto Gênesis" class="logo">
             </div>
+            <h2>Buscar Endereço IP</h2>
+            
             <div class="search-container">
-                <h1>Buscar Endereço IP</h1>
-                <input type="text" class="search-box" id="ipInput" placeholder="Digite um IP">
+                <input type="text" class="search-box" id="ipInput" placeholder="Digite um endereço IP (ex: 8.8.8.8)">
                 <div class="form-group">
-                    <button onclick="buscarEndereco()">Buscar</button>
+                    <button class="btn" onclick="buscarEndereco()">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
                 </div>
-                <div class="result" id="resultado"></div>
+                
+                <div id="resultado" class="result"></div>
+                
+                <div id="ipDetails" class="ip-details hidden">
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Endereço IP:</div>
+                        <div class="ip-detail-value" id="detail-ip"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Tipo:</div>
+                        <div class="ip-detail-value" id="detail-type"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Continente:</div>
+                        <div class="ip-detail-value" id="detail-continent"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">País:</div>
+                        <div class="ip-detail-value" id="detail-country"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Região:</div>
+                        <div class="ip-detail-value" id="detail-region"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Cidade:</div>
+                        <div class="ip-detail-value" id="detail-city"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">CEP:</div>
+                        <div class="ip-detail-value" id="detail-zip"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Provedor:</div>
+                        <div class="ip-detail-value" id="detail-isp"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Localização:</div>
+                        <div class="ip-detail-value" id="detail-location"></div>
+                    </div>
+                    <div class="ip-detail-row">
+                        <div class="ip-detail-label">Fuso Horário:</div>
+                        <div class="ip-detail-value" id="detail-timezone"></div>
+                    </div>
+                    
+                    <div class="map-container" id="mapContainer">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt"></i> Mapa será exibido aqui
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="history-container" id="historyContainer">
+                    <h3>Histórico de Buscas</h3>
+                    <div id="historyList"></div>
+                    <div class="clear-history">
+                        <button class="clear-history-btn" onclick="clearSearchHistory()">
+                            <i class="fas fa-trash"></i> Limpar histórico
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -308,7 +545,9 @@
         <h3>Informações sobre o Gênesis</h3>
         <p>O Projeto Gênesis tem como objetivo principal democratizar o acesso a ferramentas que, atualmente, são restritas ou de difícil alcance para a maioria da sociedade. Um exemplo disso é a localização por IP.</p>
         <div class="form-group">
-            <button onclick="hideInfoWindow()">Fechar</button>
+            <button class="btn" onclick="hideInfoWindow()">
+                <i class="fas fa-times"></i> Fechar
+            </button>
         </div>
     </div>
 
@@ -363,6 +602,7 @@
                 setTimeout(() => {
                     document.getElementById('loginScreen').classList.add('hidden');
                     document.getElementById('ipScreen').classList.remove('hidden');
+                    loadSearchHistory();
                 }, 1000);
             } else {
                 showInfobox("Usuário ou senha incorretos.", "error");
@@ -392,32 +632,208 @@
             }
         }
 
+        // Função para validar formato de IP
+        function isValidIP(ip) {
+            // Regex para IPv4
+            const ipv4Regex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+            
+            // Regex para IPv6 (simplificado)
+            const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
+            
+            return ipv4Regex.test(ip) || ipv6Regex.test(ip);
+        }
+
+        // Carregar histórico de buscas
+        function loadSearchHistory() {
+            const history = getSearchHistory();
+            const historyList = document.getElementById('historyList');
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<div class="history-item">Nenhuma busca realizada ainda</div>';
+                return;
+            }
+            
+            historyList.innerHTML = '';
+            history.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <div class="history-ip">${item.ip}</div>
+                    <div class="history-location">${item.city ? `${item.city}, ${item.country}` : 'Local desconhecido'}</div>
+                `;
+                historyItem.addEventListener('click', () => {
+                    document.getElementById('ipInput').value = item.ip;
+                    buscarEndereco();
+                });
+                historyList.appendChild(historyItem);
+            });
+        }
+
+        // Obter histórico de buscas
+        function getSearchHistory() {
+            const history = localStorage.getItem('ipSearchHistory');
+            return history ? JSON.parse(history) : [];
+        }
+
+        // Adicionar item ao histórico
+        function addToSearchHistory(data) {
+            const history = getSearchHistory();
+            
+            // Verificar se o IP já está no histórico
+            const existingIndex = history.findIndex(item => item.ip === data.ip);
+            if (existingIndex !== -1) {
+                history.splice(existingIndex, 1); // Remove o item existente
+            }
+            
+            // Adiciona no início do array
+            history.unshift(data);
+            
+            // Mantém apenas os últimos 10 itens
+            if (history.length > 10) {
+                history.pop();
+            }
+            
+            localStorage.setItem('ipSearchHistory', JSON.stringify(history));
+            loadSearchHistory();
+        }
+
+        // Limpar histórico de buscas
+        function clearSearchHistory() {
+            localStorage.removeItem('ipSearchHistory');
+            loadSearchHistory();
+        }
+
+        // Função para exibir os detalhes do IP
+        function displayIPDetails(data) {
+            document.getElementById('ipDetails').classList.remove('hidden');
+            
+            // Preencher os detalhes
+            document.getElementById('detail-ip').textContent = data.ip || 'N/A';
+            document.getElementById('detail-type').textContent = data.type || 'N/A';
+            document.getElementById('detail-continent').textContent = data.continent ? `${data.continent} (${data.continent_code})` : 'N/A';
+            document.getElementById('detail-country').textContent = data.country ? `${data.country} (${data.country_code})` : 'N/A';
+            document.getElementById('detail-region').textContent = data.region || 'N/A';
+            document.getElementById('detail-city').textContent = data.city || 'N/A';
+            document.getElementById('detail-zip').textContent = data.postal || 'N/A';
+            document.getElementById('detail-isp').textContent = data.connection?.isp || data.isp || 'N/A';
+            
+            if (data.latitude && data.longitude) {
+                document.getElementById('detail-location').textContent = `${data.latitude}, ${data.longitude}`;
+                
+                // Atualizar o mapa (usando OpenStreetMap)
+                const mapContainer = document.getElementById('mapContainer');
+                mapContainer.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=${data.longitude-0.01}%2C${data.latitude-0.01}%2C${data.longitude+0.01}%2C${data.latitude+0.01}&amp;layer=mapnik&amp;marker=${data.latitude}%2C${data.longitude}">
+                    </iframe>
+                `;
+            } else {
+                document.getElementById('detail-location').textContent = 'N/A';
+                document.getElementById('mapContainer').innerHTML = '<div class="map-placeholder"><i class="fas fa-map-marked-alt"></i> Dados de localização não disponíveis</div>';
+            }
+            
+            document.getElementById('detail-timezone').textContent = data.timezone?.id || data.timezone || 'N/A';
+        }
+
         // Função de busca de endereço IP
         function buscarEndereco() {
-            const ip = document.getElementById("ipInput").value;
-            fetch(`https://ipwhois.app/json/${ip}`)
-                .then(response => response.json())
-                .then(data => {
-                    const resultadoDiv = document.getElementById("resultado");
-                    if (data.success === false) {
-                        resultadoDiv.innerText = "IP inválido ou não encontrado.";
-                        resultadoDiv.classList.add("error");
-                        resultadoDiv.classList.remove("success");
-                    } else {
-                        resultadoDiv.innerHTML = 
-                            `País: ${data.country}<br>
-                             Cidade: ${data.city}<br>
-                             Região: ${data.region}<br>
-                             Latitude: ${data.latitude}<br>
-                             Longitude: ${data.longitude}`;
-                        resultadoDiv.classList.add("success");
-                        resultadoDiv.classList.remove("error");
+            const ip = document.getElementById("ipInput").value.trim();
+            const resultadoDiv = document.getElementById("resultado");
+            
+            // Validar o IP
+            if (!ip) {
+                resultadoDiv.innerText = "Por favor, digite um endereço IP.";
+                resultadoDiv.className = "result error";
+                return;
+            }
+            
+            if (!isValidIP(ip)) {
+                resultadoDiv.innerText = "Formato de IP inválido. Use IPv4 (ex: 8.8.8.8) ou IPv6.";
+                resultadoDiv.className = "result error";
+                return;
+            }
+            
+            // Verificar cache primeiro
+            const cacheKey = `ipCache_${ip}`;
+            const cachedData = localStorage.getItem(cacheKey);
+            
+            if (cachedData) {
+                const data = JSON.parse(cachedData);
+                resultadoDiv.innerHTML = `<i class="fas fa-check-circle"></i> Informações carregadas do cache.`;
+                resultadoDiv.className = "result success";
+                displayIPDetails(data);
+                return;
+            }
+            
+            // Mostrar loading
+            resultadoDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando informações...';
+            resultadoDiv.className = 'result';
+            
+            // Usar API mais robusta (ipapi.co)
+            fetch(`https://ipapi.co/${ip}/json/`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('API limit reached or invalid response');
                     }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.reason || 'IP inválido ou não encontrado');
+                    }
+                    
+                    resultadoDiv.innerHTML = `<i class="fas fa-check-circle"></i> Informações encontradas!`;
+                    resultadoDiv.className = "result success";
+                    
+                    // Salvar no cache (expira em 1 dia)
+                    const cacheData = {
+                        ...data,
+                        cachedAt: Date.now()
+                    };
+                    localStorage.setItem(cacheKey, JSON.stringify(cacheData));
+                    
+                    // Adicionar ao histórico
+                    addToSearchHistory(data);
+                    
+                    // Exibir detalhes
+                    displayIPDetails(data);
                 })
                 .catch(error => {
-                    document.getElementById("resultado").innerText = "Erro ao buscar informações.";
-                    document.getElementById("resultado").classList.add("error");
-                    document.getElementById("resultado").classList.remove("success");
+                    // Se a primeira API falhar, tentar uma alternativa
+                    fetch(`https://ipwhois.app/json/${ip}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success === false) {
+                                throw new Error(data.message || 'IP inválido ou não encontrado');
+                            }
+                            
+                            resultadoDiv.innerHTML = `<i class="fas fa-check-circle"></i> Informações encontradas (fonte alternativa)!`;
+                            resultadoDiv.className = "result success";
+                            
+                            // Salvar no cache (expira em 1 dia)
+                            const cacheData = {
+                                ...data,
+                                cachedAt: Date.now()
+                            };
+                            localStorage.setItem(cacheKey, JSON.stringify(cacheData));
+                            
+                            // Adicionar ao histórico
+                            addToSearchHistory(data);
+                            
+                            // Exibir detalhes
+                            displayIPDetails(data);
+                        })
+                        .catch(error => {
+                            resultadoDiv.innerText = `Erro: ${error.message || 'Não foi possível obter informações para este IP'}`;
+                            resultadoDiv.className = "result error";
+                            document.getElementById('ipDetails').classList.add('hidden');
+                        });
                 });
         }
 
@@ -427,9 +843,6 @@
             const overlay = document.getElementById('overlay');
             infoWindow.style.display = 'block';
             overlay.style.display = 'block';
-            setTimeout(() => {
-                hideInfoWindow();
-            }, 35000); // 35 segundos
         }
 
         // Função para esconder a janela de informações e a sobreposição
@@ -439,6 +852,29 @@
             infoWindow.style.display = 'none';
             overlay.style.display = 'none';
         }
+
+        // Limpar cache antigo ao carregar a página
+        function cleanOldCache() {
+            const now = Date.now();
+            const oneDay = 24 * 60 * 60 * 1000; // 1 dia em milissegundos
+            
+            Object.keys(localStorage).forEach(key => {
+                if (key.startsWith('ipCache_')) {
+                    try {
+                        const data = JSON.parse(localStorage.getItem(key));
+                        if (data.cachedAt && (now - data.cachedAt) > oneDay) {
+                            localStorage.removeItem(key);
+                        }
+                    } catch (e) {
+                        // Se houver erro ao parsear, remove o item
+                        localStorage.removeItem(key);
+                    }
+                }
+            });
+        }
+
+        // Inicializar
+        cleanOldCache();
     </script>
 </body>
 </html>
